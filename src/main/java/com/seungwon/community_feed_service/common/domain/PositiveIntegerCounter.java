@@ -1,10 +1,10 @@
-package com.seungwon.community_feed_service.user.domain;
+package com.seungwon.community_feed_service.common.domain;
 
-public class UserRelationCounter {
+public class PositiveIntegerCounter {
 
     private int count;
 
-    public UserRelationCounter() {
+    public PositiveIntegerCounter() {
         this.count = 0;
     }
 
