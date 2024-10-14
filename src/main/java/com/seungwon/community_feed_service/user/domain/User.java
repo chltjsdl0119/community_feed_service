@@ -13,6 +13,10 @@ public class User {
 
 
     public User(Long id, UserInfo userInfo) {
+        if (userInfo == null) {
+            throw new IllegalArgumentException("userInfo cannot be null");
+        }
+
         this.id = id;
         this.userInfo = userInfo;
         this.followingCounter = new PositiveIntegerCounter();
@@ -38,7 +42,7 @@ public class User {
     }
 
     private void increaseFollowerCounter() {
-        this.followingCounter.increase();
+        this.followerCounter.increase();
     }
 
     private void decreaseFollowerCounter() {
@@ -56,5 +60,17 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public int getFollowingCounter() {
+        return followingCounter.getCount();
+    }
+
+    public int getFollowerCounter() {
+        return followerCounter.getCount();
     }
 }
