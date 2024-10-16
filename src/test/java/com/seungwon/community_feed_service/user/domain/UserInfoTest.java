@@ -1,6 +1,5 @@
-package com.seungwon.community_feed_service.user;
+package com.seungwon.community_feed_service.user.domain;
 
-import com.seungwon.community_feed_service.user.domain.UserInfo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
