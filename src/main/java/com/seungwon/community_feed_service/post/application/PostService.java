@@ -2,7 +2,7 @@ package com.seungwon.community_feed_service.post.application;
 
 import com.seungwon.community_feed_service.post.Post;
 import com.seungwon.community_feed_service.post.application.dto.CreatePostRequestDto;
-import com.seungwon.community_feed_service.post.application.dto.LikePostRequestDto;
+import com.seungwon.community_feed_service.post.application.dto.LikeRequestDto;
 import com.seungwon.community_feed_service.post.application.interfaces.LikeRepository;
 import com.seungwon.community_feed_service.post.application.interfaces.PostRepository;
 import com.seungwon.community_feed_service.user.application.UserService;
@@ -40,8 +40,8 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public void likePost(LikePostRequestDto dto) {
-        Post post = getPost(dto.postId());
+    public void likePost(LikeRequestDto dto) {
+        Post post = getPost(dto.targetId());
         User user = userService.getUser(dto.userId());
 
         if (likeRepository.checkLike(post, user)) {
@@ -52,8 +52,8 @@ public class PostService {
         likeRepository.like(post, user);
     }
 
-    public void unlikePost(LikePostRequestDto dto) {
-        Post post = getPost(dto.postId());
+    public void unlikePost(LikeRequestDto dto) {
+        Post post = getPost(dto.targetId());
         User user = userService.getUser(dto.userId());
 
         if (likeRepository.checkLike(post, user)) {
