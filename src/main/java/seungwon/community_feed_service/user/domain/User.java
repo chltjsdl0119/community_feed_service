@@ -73,4 +73,8 @@ public class User {
     public int getFollowerCount() {
         return followerCounter.getCount();
     }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
 }
