@@ -32,7 +32,8 @@ public class Post {
         this.likeCounter.increase();
     }
 
-    public void unLike(User user) {
+
+    public void unLike() {
         this.likeCounter.decrease();
     }
 
@@ -43,5 +44,13 @@ public class Post {
 
         this.state = state;
         this.content.updateContent(updateContent);
+    }
+
+    public int getLikeCount() {
+        return likeCounter.getCount();
+    }
+
+    public String getContent() {
+        return content.getContentText();
     }
 }

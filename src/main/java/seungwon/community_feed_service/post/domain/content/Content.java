@@ -2,13 +2,13 @@ package seungwon.community_feed_service.post.domain.content;
 
 public abstract class Content {
 
-    String contentText;
-    final DatetimeInfo dateTimeInfo;
+    protected String contentText;
+    protected final DateTimeInfo dateTimeInfo;
 
     protected Content(String contentText) {
         checkText(contentText);
         this.contentText = contentText;
-        this.dateTimeInfo = new DatetimeInfo();
+        this.dateTimeInfo = new DateTimeInfo();
     }
 
     public void updateContent(String updateContent) {

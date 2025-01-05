@@ -2,12 +2,12 @@ package seungwon.community_feed_service.post.domain.content;
 
 import java.time.LocalDateTime;
 
-public class DatetimeInfo {
+public class DateTimeInfo {
 
     private boolean isEdited;
     private LocalDateTime dateTime;
 
-    public DatetimeInfo() {
+    public DateTimeInfo() {
         this.isEdited = false;
         this.dateTime = LocalDateTime.now();
     }
