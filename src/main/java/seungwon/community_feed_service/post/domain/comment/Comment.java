@@ -2,6 +2,7 @@ package seungwon.community_feed_service.post.domain.comment;
 
 import seungwon.community_feed_service.common.domain.PositiveIntegerCounter;
 import seungwon.community_feed_service.post.domain.Post;
+import seungwon.community_feed_service.post.domain.content.CommentContent;
 import seungwon.community_feed_service.post.domain.content.Content;
 import seungwon.community_feed_service.user.domain.User;
 
@@ -12,6 +13,10 @@ public class Comment {
     private final Post post;
     private final Content content;
     private final PositiveIntegerCounter likeCounter;
+
+    public static Comment createComment(User author, Post post, String content) {
+        return new Comment(null, author, post, new CommentContent(content));
+    }
 
     public Comment(Long id, User author, Post post, Content content) {
         if (author == null) {
