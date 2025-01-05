@@ -65,4 +65,20 @@ public class Comment {
     public String getContent() {
         return content.getContentText();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public Content getContentObject() {
+        return content;
+    }
 }
