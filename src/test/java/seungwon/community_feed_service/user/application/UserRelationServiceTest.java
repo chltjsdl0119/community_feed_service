@@ -2,23 +2,18 @@ package seungwon.community_feed_service.user.application;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seungwon.community_feed_service.fake.FakeObjectFactory;
 import seungwon.community_feed_service.user.application.dto.CreateUserRequestDto;
 import seungwon.community_feed_service.user.application.dto.FollowUserRequestDto;
-import seungwon.community_feed_service.user.application.interfaces.UserRelationRepository;
-import seungwon.community_feed_service.user.application.interfaces.UserRepository;
 import seungwon.community_feed_service.user.domain.User;
-import seungwon.community_feed_service.user.repository.FakeUserRelationRepository;
-import seungwon.community_feed_service.user.repository.FakeUserRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserRelationServiceTest {
 
-    private final UserRepository userRepository = new FakeUserRepository();
-    private final UserService userService = new UserService(userRepository);
-    private final UserRelationRepository userRelationRepository = new FakeUserRelationRepository();
-    private final UserRelationService userRelationService = new UserRelationService(userService, userRelationRepository);
+    private final UserService userService = FakeObjectFactory.getUserService();
+    private final UserRelationService userRelationService = FakeObjectFactory.getUserRelationService();
 
     private User user1;
     private User user2;
