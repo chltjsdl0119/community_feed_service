@@ -1,4 +1,4 @@
-package seungwon.community_feed_service.user.domain;
+package seungwon.community_feed_service.common;
 
 import org.junit.jupiter.api.Test;
 import seungwon.community_feed_service.common.domain.PositiveIntegerCounter;
