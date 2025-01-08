@@ -1,9 +1,15 @@
 package seungwon.community_feed_service.user.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import seungwon.community_feed_service.common.domain.PositiveIntegerCounter;
 
 import java.util.Objects;
 
+@Builder
+@AllArgsConstructor
+@Getter
 public class User {
 
     private final Long id;
@@ -49,6 +55,21 @@ public class User {
         this.followerCounter.decrease();
     }
 
+    public int getFollowingCount() {
+        return followingCounter.getCount();
+    }
+
+    public int getFollowerCount() {
+        return followerCounter.getCount();
+    }
+
+    public String getName() {
+        return userInfo.getName();
+    }
+
+    public String getProfileImage() {
+        return userInfo.getProfileImageUrl();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,21 +81,5 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public int getFollowingCount() {
-        return followingCounter.getCount();
-    }
-
-    public int getFollowerCount() {
-        return followerCounter.getCount();
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
     }
 }
