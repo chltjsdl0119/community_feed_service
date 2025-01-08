@@ -1,6 +1,7 @@
 package seungwon.community_feed_service.post.domain;
 
 import org.junit.jupiter.api.Test;
+import seungwon.community_feed_service.post.domain.content.Content;
 import seungwon.community_feed_service.post.domain.content.PostContent;
 import seungwon.community_feed_service.user.domain.User;
 import seungwon.community_feed_service.user.domain.UserInfo;
@@ -61,7 +62,8 @@ class PostTest {
         post.updatePost(user, newPostContent, PostPublicationState.PUBLIC);
 
         // Then
-        assertEquals(newPostContent, post.getContent());
+        Content content = post.getContent();
+        assertEquals(newPostContent, content.getContentText());
     }
 
     @Test
