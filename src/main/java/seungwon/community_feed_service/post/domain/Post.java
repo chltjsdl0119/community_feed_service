@@ -1,10 +1,16 @@
 package seungwon.community_feed_service.post.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import seungwon.community_feed_service.common.domain.PositiveIntegerCounter;
 import seungwon.community_feed_service.post.domain.content.Content;
 import seungwon.community_feed_service.post.domain.content.PostContent;
 import seungwon.community_feed_service.user.domain.User;
 
+@Builder
+@AllArgsConstructor
+@Getter
 public class Post {
 
     private Long id;
@@ -60,18 +66,6 @@ public class Post {
 
     public int getLikeCount() {
         return likeCounter.getCount();
-    }
-
-    public Content getContent() {
-        return content;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getAuthor() {
-        return author;
     }
 
     public Content getContentObject() {
