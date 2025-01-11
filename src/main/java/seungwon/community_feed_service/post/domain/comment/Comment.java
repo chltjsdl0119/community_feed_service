@@ -1,11 +1,15 @@
 package seungwon.community_feed_service.post.domain.comment;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import seungwon.community_feed_service.common.domain.PositiveIntegerCounter;
 import seungwon.community_feed_service.post.domain.Post;
 import seungwon.community_feed_service.post.domain.content.CommentContent;
 import seungwon.community_feed_service.post.domain.content.Content;
 import seungwon.community_feed_service.user.domain.User;
 
+@Builder
+@AllArgsConstructor
 public class Comment {
 
     private final Long id;
