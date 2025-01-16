@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicUpdate;
 import seungwon.community_feed_service.common.domain.PositiveIntegerCounter;
 import seungwon.community_feed_service.common.repository.entity.TimeBaseEntity;
 import seungwon.community_feed_service.user.domain.User;
@@ -14,6 +15,7 @@ import seungwon.community_feed_service.user.domain.UserInfo;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@DynamicUpdate
 public class UserEntity extends TimeBaseEntity {
 
     @Id

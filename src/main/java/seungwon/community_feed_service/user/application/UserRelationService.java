@@ -1,9 +1,11 @@
 package seungwon.community_feed_service.user.application;
 
+import org.springframework.stereotype.Service;
 import seungwon.community_feed_service.user.application.dto.FollowUserRequestDto;
 import seungwon.community_feed_service.user.application.interfaces.UserRelationRepository;
 import seungwon.community_feed_service.user.domain.User;
 
+@Service
 public class UserRelationService {
 
     private final UserService userService;
