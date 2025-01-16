@@ -1,10 +1,12 @@
 package seungwon.community_feed_service.user.application;
 
+import org.springframework.stereotype.Service;
 import seungwon.community_feed_service.user.application.dto.CreateUserRequestDto;
 import seungwon.community_feed_service.user.application.interfaces.UserRepository;
 import seungwon.community_feed_service.user.domain.User;
 import seungwon.community_feed_service.user.domain.UserInfo;
 
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
