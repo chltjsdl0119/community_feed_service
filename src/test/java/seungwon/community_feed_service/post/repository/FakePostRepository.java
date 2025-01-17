@@ -12,8 +12,8 @@ public class FakePostRepository implements PostRepository {
     private final Map<Long, Post> store = new HashMap<>();
 
     @Override
-    public Optional<Post> findById(Long id) {
-        return Optional.ofNullable(store.get(id));
+    public Post findById(Long id) {
+        return store.get(id);
     }
 
     @Override

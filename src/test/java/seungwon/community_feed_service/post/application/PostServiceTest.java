@@ -2,7 +2,9 @@ package seungwon.community_feed_service.post.application;
 
 import org.junit.jupiter.api.Test;
 import seungwon.community_feed_service.post.application.dto.LikeRequestDto;
+import seungwon.community_feed_service.post.application.dto.UpdatePostRequestDto;
 import seungwon.community_feed_service.post.domain.Post;
+import seungwon.community_feed_service.post.domain.PostPublicationState;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +26,8 @@ class PostServiceTest extends PostApplicationTestTemplate {
         Post savedPost = postService.createPost(postRequestDto);
 
         // When
-        Post updatedPost = postService.updatePost(savedPost.getId(), postRequestDto);
+        UpdatePostRequestDto updatePostRequestDto = new UpdatePostRequestDto(user.getId(), "this is test content", PostPublicationState.PUBLIC);
+        Post updatedPost = postService.updatePost(savedPost.getId(), updatePostRequestDto);
 
         // Then
         assertEquals(savedPost.getId(), updatedPost.getId());
