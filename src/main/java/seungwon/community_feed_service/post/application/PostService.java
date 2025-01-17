@@ -1,13 +1,16 @@
 package seungwon.community_feed_service.post.application;
 
+import org.springframework.stereotype.Service;
 import seungwon.community_feed_service.post.application.dto.CreatePostRequestDto;
 import seungwon.community_feed_service.post.application.dto.LikeRequestDto;
+import seungwon.community_feed_service.post.application.dto.UpdatePostRequestDto;
 import seungwon.community_feed_service.post.application.interfaces.LikeRepository;
 import seungwon.community_feed_service.post.application.interfaces.PostRepository;
 import seungwon.community_feed_service.post.domain.Post;
 import seungwon.community_feed_service.user.application.UserService;
 import seungwon.community_feed_service.user.domain.User;
 
+@Service
 public class PostService {
 
     private final UserService userService;
@@ -22,7 +25,7 @@ public class PostService {
     }
 
     public Post getPost(Long id) {
-        return postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
+        return postRepository.findById(id);
     }
 
     public Post createPost(CreatePostRequestDto dto) {
@@ -31,7 +34,7 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public Post updatePost(Long id, CreatePostRequestDto dto) {
+    public Post updatePost(Long id, UpdatePostRequestDto dto) {
         Post post = getPost(id);
         User user = userService.getUser(dto.userId());
 
