@@ -6,6 +6,7 @@ import seungwon.community_feed_service.common.ui.Response;
 import seungwon.community_feed_service.user.application.UserService;
 import seungwon.community_feed_service.user.application.dto.CreateUserRequestDto;
 import seungwon.community_feed_service.user.application.dto.GetUserListResponseDto;
+import seungwon.community_feed_service.user.application.dto.GetUserResponseDto;
 import seungwon.community_feed_service.user.domain.User;
 import seungwon.community_feed_service.user.repository.jpa.JpaUserListQueryRepository;
 
@@ -24,6 +25,11 @@ public class UserController {
     public Response<Long> createUser(@RequestBody CreateUserRequestDto dto) {
         User user = userService.createUser(dto);
         return Response.ok(user.getId());
+    }
+
+    @GetMapping("/{userId}")
+    public Response<GetUserResponseDto> getUserProfile(@PathVariable(name = "userId")Long userId) {
+        return Response.ok(userService.getUserProfile(userId));
     }
 
     @GetMapping("/{userId}/following")

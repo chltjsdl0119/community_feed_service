@@ -2,6 +2,7 @@ package seungwon.community_feed_service.user.application;
 
 import org.springframework.stereotype.Service;
 import seungwon.community_feed_service.user.application.dto.CreateUserRequestDto;
+import seungwon.community_feed_service.user.application.dto.GetUserResponseDto;
 import seungwon.community_feed_service.user.application.interfaces.UserRepository;
 import seungwon.community_feed_service.user.domain.User;
 import seungwon.community_feed_service.user.domain.UserInfo;
@@ -23,5 +24,10 @@ public class UserService {
 
     public User getUser(Long id) {
         return userRepository.findById(id);
+    }
+
+    public GetUserResponseDto getUserProfile(Long id) {
+        User user = getUser(id);
+        return new GetUserResponseDto(user);
     }
 }
