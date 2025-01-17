@@ -31,4 +31,10 @@ public class UserController {
         List<GetUserListResponseDto> result = jpaUserListQueryRepository.getFollowingUserList(userId);
         return Response.ok(result);
     }
+
+    @GetMapping("/{userId}/follower")
+    public Response<List<GetUserListResponseDto>> getFollowerList(@PathVariable(name = "userId")Long userId) {
+        List<GetUserListResponseDto> result = jpaUserListQueryRepository.getFollowerUserList(userId);
+        return Response.ok(result);
+    }
 }
