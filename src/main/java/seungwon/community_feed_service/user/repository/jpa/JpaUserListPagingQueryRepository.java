@@ -5,7 +5,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import seungwon.community_feed_service.user.application.dto.GetUserListResponserDto;
+import seungwon.community_feed_service.user.application.dto.GetUserListResponseDto;
 import seungwon.community_feed_service.user.repository.entity.QUserEntity;
 import seungwon.community_feed_service.user.repository.entity.QUserRelationEntity;
 
@@ -20,11 +20,11 @@ public class JpaUserListPagingQueryRepository {
     private static final QUserEntity user = QUserEntity.userEntity;
     private static final QUserRelationEntity relation = QUserRelationEntity.userRelationEntity;
 
-    public List<GetUserListResponserDto> getFollowerList(Long userId, Long lastFollowerId) {
+    public List<GetUserListResponseDto> getFollowerList(Long userId, Long lastFollowerId) {
         return jpaQueryFactory
                 .select(
                         Projections.fields(
-                                GetUserListResponserDto.class
+                                GetUserListResponseDto.class
                         )
                 )
                 .from(relation)
