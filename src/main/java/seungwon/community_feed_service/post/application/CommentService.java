@@ -1,5 +1,6 @@
 package seungwon.community_feed_service.post.application;
 
+import org.springframework.stereotype.Service;
 import seungwon.community_feed_service.post.application.dto.CreateCommentRequestDto;
 import seungwon.community_feed_service.post.application.dto.LikeRequestDto;
 import seungwon.community_feed_service.post.application.dto.UpdateCommentRequestDto;
@@ -10,6 +11,7 @@ import seungwon.community_feed_service.post.domain.comment.Comment;
 import seungwon.community_feed_service.user.application.UserService;
 import seungwon.community_feed_service.user.domain.User;
 
+@Service
 public class CommentService {
 
     private final CommentRepository commentRepository;
@@ -36,8 +38,8 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public Comment updateComment(UpdateCommentRequestDto dto) {
-        Comment comment = getComment(dto.commentId());
+    public Comment updateComment(Long commentId, UpdateCommentRequestDto dto) {
+        Comment comment = getComment(commentId);
         User user = userService.getUser(dto.userId());
 
         comment.updateComment(user, dto.content());
