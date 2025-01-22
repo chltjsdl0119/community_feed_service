@@ -27,4 +27,16 @@ public class CommentController {
         Comment comment = commentService.updateComment(commentId, dto);
         return Response.ok(comment.getId());
     }
+
+    @PostMapping("/like")
+    public Response<Void> likeComment(@RequestBody LikeRequestDto dto) {
+        commentService.likeComment(dto);
+        return Response.ok(null);
+    }
+
+    @PostMapping("/unlike")
+    public Response<Void> unlikeComment(@RequestBody LikeRequestDto dto) {
+        commentService.unlikeComment(dto);
+        return Response.ok(null);
+    }
 }

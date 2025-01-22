@@ -52,16 +52,23 @@ public class LikeRepositoryImpl implements LikeRepository {
 
     @Override
     public boolean checkLike(Comment comment, User user) {
-        return false;
+        LikeEntity likeEntity = new LikeEntity(comment, user);
+        return jpaLikeRepository.existsById(likeEntity.getId());
     }
 
     @Override
+    @Transactional
     public void like(Comment comment, User user) {
-
+        LikeEntity likeEntity = new LikeEntity(comment, user);
+        entityManager.persist(likeEntity);
+        jpaCommentRepository.updateLikeCount(new CommentEntity(comment));
     }
 
     @Override
+    @Transactional
     public void unlike(Comment comment, User user) {
-
+        LikeEntity likeEntity = new LikeEntity(comment, user);
+        jpaLikeRepository.deleteById(likeEntity.getId());
+        jpaCommentRepository.updateLikeCount(new CommentEntity(comment));
     }
 }
