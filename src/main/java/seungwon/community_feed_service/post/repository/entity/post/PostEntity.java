@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import seungwon.community_feed_service.common.domain.PositiveIntegerCounter;
 import seungwon.community_feed_service.common.repository.entity.TimeBaseEntity;
 import seungwon.community_feed_service.post.domain.Post;
@@ -27,6 +28,9 @@ public class PostEntity extends TimeBaseEntity {
     private UserEntity author;
 
     private String content;
+
+    @ColumnDefault("0")
+    private int commentCount;
 
     @Convert(converter = PostPublicationStateConverter.class)
     private PostPublicationState state;

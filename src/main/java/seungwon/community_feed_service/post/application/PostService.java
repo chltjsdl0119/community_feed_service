@@ -17,7 +17,6 @@ public class PostService {
     private final PostRepository postRepository;
     private final LikeRepository likeRepository;
 
-
     public PostService(UserService userService, PostRepository postRepository, LikeRepository likeRepository) {
         this.userService = userService;
         this.postRepository = postRepository;
