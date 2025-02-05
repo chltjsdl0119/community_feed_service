@@ -7,12 +7,14 @@ import seungwon.community_feed_service.post.application.interfaces.PostRepositor
 import seungwon.community_feed_service.post.domain.Post;
 import seungwon.community_feed_service.post.repository.entity.post.PostEntity;
 import seungwon.community_feed_service.post.repository.jpa.JpaPostRepository;
+import seungwon.community_feed_service.post.repository.postqueue.UserPostQueueCommandRepository;
 
 @Repository
 @RequiredArgsConstructor
 public class PostRepositoryImpl implements PostRepository {
 
     private final JpaPostRepository jpaPostRepository;
+    private final UserPostQueueCommandRepository userPostQueueCommandRepository;
 
     @Override
     @Transactional
@@ -25,6 +27,7 @@ public class PostRepositoryImpl implements PostRepository {
         }
 
         postEntity = jpaPostRepository.save(postEntity);
+        userPostQueueCommandRepository.publishPost(postEntity);
         return postEntity.toPost();
     }
 

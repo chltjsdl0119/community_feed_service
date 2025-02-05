@@ -5,7 +5,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import seungwon.community_feed_service.post.repository.entity.post.PostEntity;
 
+import java.util.List;
+
 public interface JpaPostRepository extends JpaRepository<PostEntity, Long> {
+
+    @Query("SELECT p.id FROM PostEntity p WHERE p.author.id = :authorId")
+    List<Long> findAllPostIdsByAuthorId(Long authorId);
 
     @Modifying
     @Query(value = "UPDATE PostEntity p " +

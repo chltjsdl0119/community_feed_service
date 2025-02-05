@@ -3,6 +3,7 @@ package seungwon.community_feed_service.user.repository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import seungwon.community_feed_service.post.repository.postqueue.UserPostQueueCommandRepository;
 import seungwon.community_feed_service.user.application.interfaces.UserRelationRepository;
 import seungwon.community_feed_service.user.domain.User;
 import seungwon.community_feed_service.user.repository.entity.UserEntity;
@@ -19,6 +20,7 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
 
     private final JpaUserRelationRepository jpaUserRelationRepository;
     private final JpaUserRepository jpaUserRepository;
+    private final UserPostQueueCommandRepository userPostQueueCommandRepository;
 
     @Override
     public boolean isAlreadyFollowed(User user, User targetUser) {
@@ -32,6 +34,7 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
         UserRelationEntity entity = new UserRelationEntity(user.getId(), targetUser.getId());
         jpaUserRelationRepository.save(entity);
         jpaUserRepository.saveAll(List.of(new UserEntity(user), new UserEntity(targetUser)));
+        userPostQueueCommandRepository.saveFollowPost(user.getId(), targetUser.getId());
     }
 
     @Override
@@ -40,5 +43,6 @@ public class UserRelationRepositoryImpl implements UserRelationRepository {
         UserRelationIdEntity id = new UserRelationIdEntity(user.getId(), targetUser.getId());
         jpaUserRelationRepository.deleteById(id);
         jpaUserRepository.saveAll(List.of(new UserEntity(user), new UserEntity(targetUser)));
+        userPostQueueCommandRepository.deleteUnfollowPost(user.getId(), targetUser.getId());
     }
 }

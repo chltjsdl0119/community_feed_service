@@ -15,25 +15,28 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JpaUserListPagingQueryRepository {
 
-    private final JPAQueryFactory jpaQueryFactory;
+    private final JPAQueryFactory queryFactory;
 
-    private static final QUserEntity user = QUserEntity.userEntity;
-    private static final QUserRelationEntity relation = QUserRelationEntity.userRelationEntity;
+    private static final QUserEntity userEntity = QUserEntity.userEntity;
+    private static final QUserRelationEntity relationEntity = QUserRelationEntity.userRelationEntity;
 
     public List<GetUserListResponseDto> getFollowerList(Long userId, Long lastFollowerId) {
-        return jpaQueryFactory
+        return queryFactory
                 .select(
                         Projections.fields(
-                                GetUserListResponseDto.class
+                                GetUserListResponseDto.class,
+                                userEntity.name.as("name"),
+                                userEntity.profileImage.as("profileImage")
                         )
                 )
-                .from(relation)
-                .join(user).on(relation.followingUserId.eq(user.id))
-                .where(relation.followerUserId.eq(userId),
+                .from(relationEntity)
+                .join(userEntity).on(relationEntity.followingUserId.eq(userEntity.id))
+                .where(
+                        relationEntity.followerUserId.eq(userId),
                         hasLastData(lastFollowerId)
                 )
-                .orderBy(user.id.desc())
-                .limit(20)
+                .orderBy(userEntity.id.desc())
+                .limit(100L)
                 .fetch();
     }
 
@@ -42,6 +45,6 @@ public class JpaUserListPagingQueryRepository {
             return null;
         }
 
-        return user.id.lt(lastId);
+        return userEntity.id.lt(lastId);
     }
 }
